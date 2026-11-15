@@ -4,11 +4,12 @@
 
 # ============================================================
 # 自定义提示符样式（改这个数字即可，重新 . ~/.bashrc 或新开终端生效）
+#   0 = 自动         （安卓用 3，Linux 用 1，其他用 2）
 #   1 = 用户@主机:目录$
 #   2 = 用户:目录$
 #   3 = 目录 $       （绿色；不显示用户名和主机名）
 # ============================================================
-PROMPT_STYLE=2
+PROMPT_STYLE=0
 
 # If not running interactively, don't do anything
 case $- in
@@ -67,6 +68,18 @@ if [ -n "$force_color_prompt" ]; then
     else
 	color_prompt=
     fi
+fi
+
+# ---- PROMPT_STYLE=0 时按系统自动选择 ----
+#   $HOME 以 /data 开头  -> 安卓（Termux 等），用 3
+#   $HOME 以 /home 或 /root 开头 -> 常规 Linux，用 1
+#   其他（如 macOS 的 /Users/xxx）-> 用 2
+if [ "${PROMPT_STYLE:-1}" = 0 ]; then
+    case "$HOME" in
+        /data*)          PROMPT_STYLE=3 ;;
+        /home*|/root*)   PROMPT_STYLE=1 ;;
+        *)               PROMPT_STYLE=2 ;;
+    esac
 fi
 
 # 按 PROMPT_STYLE 决定提示符前面的“用户@主机”部分
