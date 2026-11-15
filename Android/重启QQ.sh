@@ -1,0 +1,1 @@
+clear;am force-stop com.tencent.mobileqq;sleep 0.6;am start -n com.tencent.mobileqq/com.tencent.mobileqq.activity.SplashActivity >/dev/null 2>&1;for i in $(seq 100); do echo "\t\033[32m正在启动QQ中...";done;sleep 0.8;am force-stop bin.mt.plus

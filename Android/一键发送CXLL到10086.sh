@@ -1,0 +1,1 @@
+am start -a android.intent.action.SENDTO -d sms:10086 --es sms_body "CXLL"

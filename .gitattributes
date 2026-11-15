@@ -1,0 +1,32 @@
+# 换行符统一规则
+# 文本文件：仓库内存 LF，检出到工作区也是 LF
+* text=auto eol=lf
+
+# Windows 批处理：仓库内、工作区、raw 下载三处都必须是 CRLF
+# 注意不要写成 "text eol=crlf"：那只是检出时转成 CRLF，
+# blob 里存的仍是 LF，在 GitHub 上单独下载某个 .bat 就会得到 LF 文件
+*.bat -text
+*.cmd -text
+
+# 二进制文件：不做换行转换，也不参与文本 diff
+*.ttf binary
+*.otf binary
+*.woff binary
+*.woff2 binary
+*.ico binary
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.gif binary
+*.webp binary
+*.bmp binary
+*.zip binary
+*.7z binary
+*.rar binary
+*.gz binary
+*.tar binary
+*.exe binary
+*.dll binary
+*.pdf binary
+*.xlsx binary
+*.docx binary
